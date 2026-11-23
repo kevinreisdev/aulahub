@@ -33,3 +33,9 @@ class User:
         self.role = role
         self.is_active = True
         self.created_at = datetime.datetime.now(ZoneInfo("America/Sao_Paulo"))
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def __repr__(self):
+        return f"User(id={self.id!r}, email={self.email!r}, role={self.role!r})"
