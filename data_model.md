@@ -19,7 +19,7 @@ students enroll in courses and watch the lessons, and admins manage the system.
 | created_at    | datetime | yes      | set automatically on creation          |
 
 **Validation rules**
-- first_name and last_name: not empty, max 50 characters
+- first_name and last_name: min 3 characters, max 50 characters
 - email: must contain "@" and a "." after it
 - password (before hashing): at least 8 characters
 - role: must be one of the allowed values
