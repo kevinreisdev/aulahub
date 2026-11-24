@@ -80,3 +80,21 @@ def test_password_exactly_8_characters():
 def test_email_without_dot():
     with pytest.raises(ValueError):
         User("Kevin", "Reis", "kevin@gmailcom", "12345678", "student")
+
+
+def test_password_is_hashed():
+    user = User("Kevin", "Reis", "kevin@gmail.com", "12345678", "student")
+
+    assert user.password_hash != "12345678"
+
+
+def test_password_check_correct():
+    user = User("Kevin", "Reis", "kevin@gmail.com", "12345678", "student")
+
+    assert user.check_password("12345678") == True
+
+
+def test_check_password_wrong():
+    user = User("Kevin", "Reis", "kevin@gmail.com", "12345678", "student")
+
+    assert user.check_password("123456789") == False

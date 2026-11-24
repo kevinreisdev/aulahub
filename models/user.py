@@ -1,6 +1,8 @@
 import datetime
 from zoneinfo import ZoneInfo
 
+import bcrypt
+
 
 class User:
     ALLOWED_ROLES = ("student", "teacher", "admin")
@@ -15,7 +17,6 @@ class User:
             raise ValueError("Erro no campo Sobrenome: permitido no mínimo 3 caracteres.")
         if len(last_name.strip()) > 50:
             raise ValueError("Erro no campo Sobrenome: permitido no máximo 50 caracteres.")
-
 
         if "@" not in email:
             raise ValueError("E-mail inválido.")
@@ -32,7 +33,7 @@ class User:
         self.first_name = first_name.strip()
         self.last_name = last_name.strip()
         self.email = email.lower()
-        self._password = password
+        self.password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
         self.role = role
         self.is_active = True
         self.created_at = datetime.datetime.now(ZoneInfo("America/Sao_Paulo"))
@@ -42,3 +43,6 @@ class User:
 
     def __repr__(self):
         return f"User(id={self.id!r}, email={self.email!r}, role={self.role!r})"
+
+    def check_password(self, password):
+        return bcrypt.checkpw(password.encode(), self.password_hash.encode())
