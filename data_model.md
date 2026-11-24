@@ -71,7 +71,7 @@ It has no attributes of its own, so a subclass would add nothing.
 | created_at   | datetime | yes      | set automatically on creation      |
 
 **Validation rules**
-- title: not empty, max 100 characters
+- title: not empty, min 10, max 100 characters
 - teacher_id must belong to a User with role "teacher"
 - a course can only be published if it has at least 1 lesson
 
