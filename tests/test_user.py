@@ -76,3 +76,7 @@ def test_password_exactly_8_characters():
 
     assert user.email == "kevin@gmail.com"
 
+
+def test_email_without_dot():
+    with pytest.raises(ValueError):
+        User("Kevin", "Reis", "kevin@gmailcom", "12345678", "student")

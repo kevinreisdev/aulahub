@@ -16,7 +16,10 @@ class User:
         if len(last_name.strip()) > 50:
             raise ValueError("Erro no campo Sobrenome: permitido no máximo 50 caracteres.")
 
+
         if "@" not in email:
+            raise ValueError("E-mail inválido.")
+        if "." not in email.split("@")[1]:
             raise ValueError("E-mail inválido.")
 
         if len(password) < 8:
