@@ -1,5 +1,4 @@
-import datetime
-from zoneinfo import ZoneInfo
+from datetime import datetime, timezone
 
 
 class Course:
@@ -16,4 +15,4 @@ class Course:
         self.description = description
         self.teacher_id = teacher_id
         self.is_published = False
-        self.created_at = datetime.datetime.now(ZoneInfo("America/Sao_Paulo"))
+        self.created_at = datetime.now(timezone.utc)

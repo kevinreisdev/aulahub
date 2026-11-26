@@ -1,6 +1,4 @@
-import datetime
-from zoneinfo import ZoneInfo
-
+from datetime import datetime, timezone
 import bcrypt
 
 
@@ -36,7 +34,7 @@ class User:
         self.password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
         self.role = role
         self.is_active = True
-        self.created_at = datetime.datetime.now(ZoneInfo("America/Sao_Paulo"))
+        self.created_at = datetime.now(timezone.utc)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
